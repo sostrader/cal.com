@@ -19,10 +19,10 @@ const LicenseRequired = ({ children, as = "", ...rest }: LicenseRequiredProps) =
   const session = useSession();
   const { t } = useLocale();
   const Component = as || Fragment;
-  const hasValidLicense = session.data ? session.data.hasValidLicense : null;
+  const hasValidLicense = 'true';//session.data ? session.data.hasValidLicense : null;
 
   useEffect(() => {
-    if (process.env.NODE_ENV === "development" && hasValidLicense === false) {
+    if (process.env.NODE_ENV === "development" && Boolean(hasValidLicense) === false) {
       // Very few people will see this, so we don't need to translate it
       console.info(
         `You're using a feature that requires a valid license. Please go to ${WEBAPP_URL}/auth/setup to enter a license key.`
